@@ -13,11 +13,5 @@ RISCV_BUILTIN (zero_si, "zero", RISCV_BUILTIN_DIRECT, RISCV_SI_FTYPE, zero32),
 RISCV_BUILTIN (zero_di, "zero", RISCV_BUILTIN_DIRECT, RISCV_DI_FTYPE, zero64),
 
 // zicbop
-RISCV_BUILTIN (prefetchi_si, "prefetchi", RISCV_BUILTIN_DIRECT, RISCV_SI_FTYPE_SI, prefetchi32),
-RISCV_BUILTIN (prefetchi_di, "prefetchi", RISCV_BUILTIN_DIRECT, RISCV_DI_FTYPE_DI, prefetchi64),
-
-RISCV_BUILTIN (prefetchr_si, "prefetchr", RISCV_BUILTIN_DIRECT, RISCV_SI_FTYPE_SI, prefetchr32),
-RISCV_BUILTIN (prefetchr_di, "prefetchr", RISCV_BUILTIN_DIRECT, RISCV_DI_FTYPE_DI, prefetchr64),
-
-RISCV_BUILTIN (prefetchw_si, "prefetchw", RISCV_BUILTIN_DIRECT, RISCV_SI_FTYPE_SI, prefetchw32),
-RISCV_BUILTIN (prefetchw_di, "prefetchw", RISCV_BUILTIN_DIRECT, RISCV_DI_FTYPE_DI, prefetchw64),
+//RISCV_BUILTIN (prefetchi_si, "prefetchi", RISCV_BUILTIN_DIRECT, RISCV_SI_FTYPE_SI, prefetchi32),
+//RISCV_BUILTIN (prefetchi_di, "prefetchi", RISCV_BUILTIN_DIRECT, RISCV_DI_FTYPE_DI, prefetchi64),

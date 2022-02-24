@@ -1,20 +1,26 @@
-/* { dg-do compile } */
+/* { dg-do compile target { { rv64-*-*}}} */
 /* { dg-options "-march=rv64gc_zicbop -mabi=lp64" } */
 
-int foo1(int rs1)
+extern void exit (int);
+
+char *msg = "howdy there";
+
+void foo (char *p)
 {
-    return __builtin_riscv_prefetchi(rs1);
+  __builtin_prefetch (p, 0, 0);
+  __builtin_prefetch (p, 0, 1);
+  __builtin_prefetch (p, 0, 2);
+  __builtin_prefetch (p, 0, 3);
+  __builtin_prefetch (p, 1, 0);
+  __builtin_prefetch (p, 1, 1);
+  __builtin_prefetch (p, 1, 2);
+  __builtin_prefetch (p, 1, 3);
 }
 
-int foo2(int rs1)
+int main ()
 {
-    return __builtin_riscv_prefetchr(rs1);
+  foo (msg);
+  exit (0);
 }
 
-int foo3(int rs1)
-{
-    return __builtin_riscv_prefetchw(rs1);
-}
-/* { dg-final { scan-assembler-times "prefetch.i" 1 } } */
-/* { dg-final { scan-assembler-times "prefetch.r" 1 } } */
-/* { dg-final { scan-assembler-times "prefetch.w" 1 } } */
+/* { dg-final { scan-assembler-times "prefetch" 8 } } */

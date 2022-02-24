@@ -2895,28 +2895,20 @@
 "cbo.zero\t%0"
 )
 
-(define_insn "riscv_prefetchi_<mode>"
-[(unspec:X [(match_operand:X 0 "address_operand" "p")
-            (match_operand:X 1 "register_operand" "r")]
-            UNSPEC_PREI)]
-"TARGET_ZICBOP"
-"prefetch.i\t%a0\t%1"
+(define_expand "prefetch"
+  [(prefetch (match_operand 0 "address_operand")
+	     (match_operand:SI 1 "const_int_operand")
+	     (match_operand:SI 2 "const_int_operand"))]
+  "TARGET_ZICBOP"
 )
 
-(define_insn "riscv_prefetchr_<mode>"
-[(unspec:X [(match_operand:X 0 "address_operand" "p")
-            (match_operand:X 1 "register_operand" "r")]
-           UNSPEC_PRER)]
+(define_insn "riscv_prefetchr"
+[(prefetch (match_operand:SI 0 "address_operand" "p")
+           (match_operand:SI 1 "const_int_operand" "n")
+           (match_operand:SI 2 "const_int_operand" "n")
+           )]
 "TARGET_ZICBOP"
-"prefetch.r\t%a0\t%1"
-)
-
-(define_insn "riscv_prefetchw_<mode>"
-[(unspec:X [(match_operand:X 0 "address_operand" "p")
-            (match_operand:X 1 "register_operand" "r")]
-           UNSPEC_PREW)]
-"TARGET_ZICBOP"
-"prefetch.w\t%a0\t%1"
+"prefetch\t%a0"
 )
 
 (include "bitmanip.md")
