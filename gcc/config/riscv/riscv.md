@@ -2902,7 +2902,7 @@
   "TARGET_ZICBOP"
 )
 
-(define_insn "riscv_prefetchr"
+(define_insn "riscv_prefetch"
 [(prefetch (match_operand:SI 0 "address_operand" "p")
            (match_operand:SI 1 "const_int_operand" "n")
            (match_operand:SI 2 "const_int_operand" "n")
