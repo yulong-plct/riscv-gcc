@@ -96,8 +96,8 @@ AVAIL (inval32, TARGET_ZICBOM && !TARGET_64BIT)
 AVAIL (inval64, TARGET_ZICBOM && TARGET_64BIT)
 AVAIL (zero32,  TARGET_ZICBOZ && !TARGET_64BIT)
 AVAIL (zero64,  TARGET_ZICBOZ && TARGET_64BIT)
-//AVAIL (prefetch32, TARGET_ZICBOP && !TARGET_64BIT)
-//AVAIL (prefetch64, TARGET_ZICBOP && TARGET_64BIT)
+AVAIL (prefetchi32, TARGET_ZICBOP && !TARGET_64BIT)
+AVAIL (prefetchi64, TARGET_ZICBOP && TARGET_64BIT)
 
 /* Construct a riscv_builtin_description from the given arguments.
 

@@ -50,8 +50,6 @@
   UNSPEC_INVAL
   UNSPEC_ZERO
   UNSPEC_PREI
-  UNSPEC_PRER
-  UNSPEC_PREW
 ])
 
 (define_c_enum "unspecv" [
@@ -2895,20 +2893,26 @@
 "cbo.zero\t%0"
 )
 
-(define_expand "prefetch"
-  [(prefetch (match_operand 0 "address_operand")
-	     (match_operand:SI 1 "const_int_operand")
-	     (match_operand:SI 2 "const_int_operand"))]
-  "TARGET_ZICBOP"
-)
-
-(define_insn "riscv_prefetch"
-[(prefetch (match_operand:SI 0 "address_operand" "p")
-           (match_operand:SI 1 "const_int_operand" "n")
-           (match_operand:SI 2 "const_int_operand" "n")
-           )]
+(define_insn "prefetch"
+[(prefetch (match_operand 0 "address_operand" "p")
+           (match_operand 1 "imm5_operand" "i")
+           (match_operand 2 "const_int_operand" "n"))]
 "TARGET_ZICBOP"
-"prefetch\t%a0"
+{
+  switch (INTVAL (operands[1]))
+  {
+    case 0: return "prefetch.r\t%a0";
+    case 1: return "prefetch.w\t%a0";
+    default: gcc_unreachable ();
+  }
+})
+
+(define_insn "riscv_prefetchi_<mode>"
+[(unspec:X [(match_operand:X 0 "address_operand" "p")
+            (match_operand:X 1 "imm5_operand" "i")]
+            UNSPEC_PREI)]
+"TARGET_ZICBOP"
+"prefetch.i\t%0"
 )
 
 (include "bitmanip.md")
