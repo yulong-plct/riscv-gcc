@@ -45,6 +45,11 @@
 
   ;; Stack tie
   UNSPEC_TIE
+  UNSPEC_CLEAN
+  UNSPEC_FLUSH
+  UNSPEC_INVAL
+  UNSPEC_ZERO
+  UNSPEC_PREI
 ])
 
 (define_c_enum "unspecv" [
@@ -69,6 +74,7 @@
   ;; Stack Smash Protector
   UNSPEC_SSP_SET
   UNSPEC_SSP_TEST
+
 ])
 
 (define_constants
@@ -2862,6 +2868,52 @@
   ""
   "<load>\t%3, %1\;<load>\t%0, %2\;xor\t%0, %3, %0\;li\t%3, 0"
   [(set_attr "length" "12")])
+
+(define_insn "riscv_clean_<mode>"
+[(unspec:X [(match_operand:X 0 "register_operand" "r")] UNSPEC_CLEAN)]
+"TARGET_ZICBOM"
+"cbo.clean\t%a0"
+)
+
+(define_insn "riscv_flush_<mode>"
+[(unspec:X [(match_operand:X 0 "register_operand" "r")] UNSPEC_FLUSH)]
+"TARGET_ZICBOM"
+"cbo.flush\t%a0"
+)
+
+(define_insn "riscv_inval_<mode>"
+[(unspec:X [(match_operand:X 0 "register_operand" "r")] UNSPEC_INVAL)]
+"TARGET_ZICBOM"
+"cbo.inval\t%a0"
+)
+
+(define_insn "riscv_zero_<mode>"
+[(unspec:X [(match_operand:X 0 "register_operand" "r")] UNSPEC_ZERO)]
+"TARGET_ZICBOZ"
+"cbo.zero\t%a0"
+)
+
+(define_insn "prefetch"
+[(prefetch (match_operand 0 "address_operand" "p")
+           (match_operand 1 "imm5_operand" "i")
+           (match_operand 2 "const_int_operand" "n"))]
+"TARGET_ZICBOP"
+{
+  switch (INTVAL (operands[1]))
+  {
+    case 0: return "prefetch.r\t%a0";
+    case 1: return "prefetch.w\t%a0";
+    default: gcc_unreachable ();
+  }
+})
+
+(define_insn "riscv_prefetchi_<mode>"
+[(unspec:X [(match_operand:X 0 "address_operand" "p")
+            (match_operand:X 1 "imm5_operand" "i")]
+            UNSPEC_PREI)]
+"TARGET_ZICBOP"
+"prefetch.i\t%a0"
+)
 
 (include "bitmanip.md")
 (include "sync.md")
