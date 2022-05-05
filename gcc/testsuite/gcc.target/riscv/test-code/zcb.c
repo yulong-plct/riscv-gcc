@@ -28,35 +28,60 @@ void lh(signed short arr[])
 
 void ext(void)
 {
+    unsigned char a = 2;
+    signed char b = -2;
+    unsigned short c = 3;
+    signed short d = -3;
+
     asm volatile(
-        "zext.b a1, a1"
+        "zext.b %0, %1"
+        : "=r" (a)
+        : "r" (a)
     );
+    
     asm volatile(
-        "sext.b a1, a1"
+        "sext.b %0, %1"
+        : "=r" (b)
+        : "r" (b)
     );
+
     asm volatile(
-        "zext.h a1, a1"
+        "zext.h %0, %1"
+        : "=r" (c)
+        : "r" (c)
     );
+
     asm volatile(
-        "sext.h a1, a1"
+        "sext.h %0, %1"
+        : "=r" (d)
+        : "r" (d)
     );
-    printf("ext PASS!\n");
+
+    printf("a = %d, b = %d, c = %d, d = %d\n", a, b, c, d);
 }
 
 void mul(void)
 {
+    int m = 1;
+    int n = 2;
+
     asm volatile(
-        "mul x15,x15,x8"
+        "mul %0,%1,%2"
+        : "=r" (m)
+        : "r" (m),"r" (n)
     );
-    printf("c.mul PASS!\n");
+    printf("m = %d, n = %d\n", m, n);
 }
 
 void not(void)
 {
+    int p = 1;
     asm volatile(
-        "not x15,x15"
+        "not %0,%1"
+        : "=r" (p)
+        : "r" (p)
     );
-    printf("c.not PASS!\n");
+    printf("p = %d\n", p);
 }
 
 int main()
@@ -67,6 +92,9 @@ int main()
     lbu_sb(arr1);
     lhu_sh(arr2);
     lh(arr3);
+    ext();
+    mul();
+    not();
     if (arr1[0] == 1)
     {
         printf("c.lbu and c.sb PASS!\n");
