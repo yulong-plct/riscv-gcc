@@ -2870,25 +2870,29 @@
   [(set_attr "length" "12")])
 
 (define_insn "riscv_clean_<mode>"
-[(unspec:X [(match_operand:X 0 "register_operand" "r")] UNSPEC_CLEAN)]
+[(unspec:X [(match_operand:X 0 "register_operand" "r")
+            (match_operand:X 1 "immediate_operand" "i")] UNSPEC_CLEAN)]
 "TARGET_ZICBOM"
 "cbo.clean\t%0"
 )
 
 (define_insn "riscv_flush_<mode>"
-[(unspec:X [(match_operand:X 0 "register_operand" "r")] UNSPEC_FLUSH)]
+[(unspec:X [(match_operand:X 0 "register_operand" "r")
+            (match_operand:X 1 "immediate_operand" "i")] UNSPEC_FLUSH)]
 "TARGET_ZICBOM"
 "cbo.flush\t%0"
 )
 
 (define_insn "riscv_inval_<mode>"
-[(unspec:X [(match_operand:X 0 "register_operand" "r")] UNSPEC_INVAL)]
+[(unspec:X [(match_operand:X 0 "register_operand" "r")
+            (match_operand:X 1 "immediate_operand" "i")] UNSPEC_INVAL)]
 "TARGET_ZICBOM"
 "cbo.inval\t%0"
 )
 
 (define_insn "riscv_zero_<mode>"
-[(unspec:X [(match_operand:X 0 "register_operand" "r")] UNSPEC_ZERO)]
+[(unspec:X [(match_operand:X 0 "register_operand" "r")
+            (match_operand:X 1 "immediate_operand" "i")] UNSPEC_ZERO)]
 "TARGET_ZICBOZ"
 "cbo.zero\t%0"
 )

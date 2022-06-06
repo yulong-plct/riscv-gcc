@@ -3,17 +3,17 @@
 
 int foo1()
 {
-    return __builtin_riscv_zicbom_cbo_clean();
+    return __builtin_riscv_zicbom_cbo_clean(0);
 }
 
 int foo2()
 {
-    return __builtin_riscv_zicbom_cbo_flush();
+    return __builtin_riscv_zicbom_cbo_flush(0);
 }
 
 int foo3()
 {
-    return __builtin_riscv_zicbom_cbo_inval();
+    return __builtin_riscv_zicbom_cbo_inval(0);
 }
 
 /* { dg-final { scan-assembler-times "cbo.clean" 1 } } */

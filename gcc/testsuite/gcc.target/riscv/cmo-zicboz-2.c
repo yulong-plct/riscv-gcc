@@ -3,7 +3,7 @@
 
 int foo1()
 {
-    return __builtin_riscv_zicboz_cbo_zero();
+    return __builtin_riscv_zicboz_cbo_zero(0);
 }
 
 /* { dg-final { scan-assembler-times "cbo.zero" 1 } } */
