@@ -69,12 +69,24 @@ enum stack_protector_guard {
 
 #define MASK_ZICSR    (1 << 0)
 #define MASK_ZIFENCEI (1 << 1)
+#define MASK_ZICCAMOA (1 << 2)
+#define MASK_ZICCIF   (1 << 3)
+#define MASK_ZICCLSM  (1 << 4)
+#define MASK_ZICCRSE  (1 << 5)
 
 #define TARGET_ZICSR    ((riscv_zi_subext & MASK_ZICSR) != 0)
 #define TARGET_ZIFENCEI ((riscv_zi_subext & MASK_ZIFENCEI) != 0)
+#define TARGET_ZICCAMOA ((riscv_zi_subext & MASK_ZICCAMOA) != 0)
+#define TARGET_ZICCIF   ((riscv_zi_subext & MASK_ZICCIF) != 0)
+#define TARGET_ZICCLSM  ((riscv_zi_subext & MASK_ZICCLSM) != 0)
+#define TARGET_ZICCRSE  ((riscv_zi_subext & MASK_ZICCRSE) != 0)
 
 #define MASK_ZAWRS   (1 << 0)
+#define MASK_ZA64RS   (1 << 0)
+#define MASK_ZA128RS   (1 << 0)
 #define TARGET_ZAWRS ((riscv_za_subext & MASK_ZAWRS) != 0)
+#define TARGET_ZA64RS ((riscv_za_subext & MASK_ZA64RS) != 0)
+#define TARGET_ZA128RS ((riscv_za_subext & MASK_ZA128RS) != 0)
 
 #define MASK_ZBA      (1 << 0)
 #define MASK_ZBB      (1 << 1)
@@ -161,10 +173,12 @@ enum stack_protector_guard {
 #define MASK_ZICBOZ   (1 << 0)
 #define MASK_ZICBOM   (1 << 1)
 #define MASK_ZICBOP   (1 << 2)
+#define MASK_ZIC64B   (1 << 3)
 
 #define TARGET_ZICBOZ ((riscv_zicmo_subext & MASK_ZICBOZ) != 0)
 #define TARGET_ZICBOM ((riscv_zicmo_subext & MASK_ZICBOM) != 0)
 #define TARGET_ZICBOP ((riscv_zicmo_subext & MASK_ZICBOP) != 0)
+#define TARGET_ZIC64B ((riscv_zicmo_subext & MASK_ZIC64B) != 0)
 
 #define MASK_ZFHMIN   (1 << 0)
 #define MASK_ZFH      (1 << 1)
