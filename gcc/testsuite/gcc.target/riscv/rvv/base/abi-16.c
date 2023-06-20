@@ -1,5 +1,5 @@
 /* { dg-do compile } */
-/* { dg-options "-O3 -march=rv32gc_zve32f_zvl64b -mabi=ilp32d" } */
+/* { dg-options "-O3 -march=rv32gc_zve32f_zvl64b_zvfh -mabi=ilp32d" } */
 
 void f___rvv_int8mf8x2_t () {__rvv_int8mf8x2_t t;}
 void f___rvv_uint8mf8x2_t () {__rvv_uint8mf8x2_t t;}
@@ -179,6 +179,31 @@ void f___rvv_float16m1_t () {__rvv_float16m1_t t;} /* { dg-error {unknown type n
 void f___rvv_float16m2_t () {__rvv_float16m2_t t;} /* { dg-error {unknown type name '__rvv_float16m2_t'} } */
 void f___rvv_float16m4_t () {__rvv_float16m4_t t;} /* { dg-error {unknown type name '__rvv_float16m4_t'} } */
 void f___rvv_float16m8_t () {__rvv_float16m8_t t;} /* { dg-error {unknown type name '__rvv_float16m8_t'} } */
+void f___rvv_float16mf4x2_t () {__rvv_float16mf4x2_t t;}
+void f___rvv_float16mf4x3_t () {__rvv_float16mf4x3_t t;}
+void f___rvv_float16mf4x4_t () {__rvv_float16mf4x4_t t;}
+void f___rvv_float16mf4x5_t () {__rvv_float16mf4x5_t t;}
+void f___rvv_float16mf4x6_t () {__rvv_float16mf4x6_t t;}
+void f___rvv_float16mf4x7_t () {__rvv_float16mf4x7_t t;}
+void f___rvv_float16mf4x8_t () {__rvv_float16mf4x8_t t;}
+void f___rvv_float16mf2x2_t () {__rvv_float16mf2x2_t t;}
+void f___rvv_float16mf2x3_t () {__rvv_float16mf2x3_t t;}
+void f___rvv_float16mf2x4_t () {__rvv_float16mf2x4_t t;}
+void f___rvv_float16mf2x5_t () {__rvv_float16mf2x5_t t;}
+void f___rvv_float16mf2x6_t () {__rvv_float16mf2x6_t t;}
+void f___rvv_float16mf2x7_t () {__rvv_float16mf2x7_t t;}
+void f___rvv_float16mf2x8_t () {__rvv_float16mf2x8_t t;}
+void f___rvv_float16m1x2_t () {__rvv_float16m1x2_t t;}
+void f___rvv_float16m1x3_t () {__rvv_float16m1x3_t t;}
+void f___rvv_float16m1x4_t () {__rvv_float16m1x4_t t;}
+void f___rvv_float16m1x5_t () {__rvv_float16m1x5_t t;}
+void f___rvv_float16m1x6_t () {__rvv_float16m1x6_t t;}
+void f___rvv_float16m1x7_t () {__rvv_float16m1x7_t t;}
+void f___rvv_float16m1x8_t () {__rvv_float16m1x8_t t;}
+void f___rvv_float16m2x2_t () {__rvv_float16m2x2_t t;}
+void f___rvv_float16m2x3_t () {__rvv_float16m2x3_t t;}
+void f___rvv_float16m2x4_t () {__rvv_float16m2x4_t t;}
+void f___rvv_float16m4x2_t () {__rvv_float16m4x2_t t;}
 void f___rvv_float32mf2x2_t () {__rvv_float32mf2x2_t t;}
 void f___rvv_float32mf2x3_t () {__rvv_float32mf2x3_t t;}
 void f___rvv_float32mf2x4_t () {__rvv_float32mf2x4_t t;}
