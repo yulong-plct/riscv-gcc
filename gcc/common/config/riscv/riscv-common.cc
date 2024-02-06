@@ -250,6 +250,7 @@ static const struct riscv_ext_version riscv_ext_version_table[] =
   {"za64rs",  ISA_SPEC_CLASS_NONE, 1, 0},
   {"za128rs", ISA_SPEC_CLASS_NONE, 1, 0},
   {"zawrs", ISA_SPEC_CLASS_NONE, 1, 0},
+  {"zabha", ISA_SPEC_CLASS_NONE, 1, 0},
 
   {"zba", ISA_SPEC_CLASS_NONE, 1, 0},
   {"zbb", ISA_SPEC_CLASS_NONE, 1, 0},
@@ -1504,6 +1505,7 @@ static const riscv_ext_flag_table_t riscv_ext_flag_table[] =
   {"za64rs", &gcc_options::x_riscv_za_subext, MASK_ZA64RS},
   {"za128rs", &gcc_options::x_riscv_za_subext, MASK_ZA128RS},
   {"zawrs", &gcc_options::x_riscv_za_subext, MASK_ZAWRS},
+  {"zabha", &gcc_options::x_riscv_za_subext, MASK_ZABHA},
 
   {"zba",    &gcc_options::x_riscv_zb_subext, MASK_ZBA},
   {"zbb",    &gcc_options::x_riscv_zb_subext, MASK_ZBB},

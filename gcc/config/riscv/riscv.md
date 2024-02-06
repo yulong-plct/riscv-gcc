@@ -849,6 +849,24 @@
   [(set_attr "type" "arith")
    (set_attr "mode" "SI")])
 
+(define_insn "amo_addqi3"
+  [(set (match_operand:QI          0 "register_operand" "=r,r")
+	(plus:QI (match_operand:QI 1 "register_operand" " r,r")
+		 (match_operand:QI 2 "arith_operand"    " r,r")))]
+  "TARGET_ZABHA"
+  "amoadd.b\t%0,%1,%2"
+  [(set_attr "type" "atomic")
+   (set_attr "mode" "QI")])
+
+(define_insn "amo_addhi3"
+  [(set (match_operand:HI          0 "register_operand" "=r,r")
+	(plus:HI (match_operand:HI 1 "register_operand" " r,r")
+		 (match_operand:HI 2 "arith_operand"    " r,r")))]
+  "TARGET_ZABHA"
+  "amoadd.h\t%0,%1,%2"
+  [(set_attr "type" "atomic")
+   (set_attr "mode" "HI")])
+
 ;;
 ;;  ....................
 ;;
@@ -1645,6 +1663,78 @@
   [(set_attr "type" "fmove")
    (set_attr "mode" "<UNITMODE>")])
 
+(define_insn "amo_minqi3"
+  [(set (match_operand:QI            0 "register_operand" "=r")
+	(smin:QI (match_operand:QI 1 "register_operand" " r")
+		   (match_operand:QI 2 "register_operand" " r")))]
+  "TARGET_ZABHA"
+  "amomin.b\t%0,%1,%2"
+  [(set_attr "type" "atomic")
+   (set_attr "mode" "QI")])
+
+(define_insn "amo_minuqi3"
+  [(set (match_operand:QI            0 "register_operand" "=r")
+	(umin:QI (match_operand:QI 1 "register_operand" " r")
+		   (match_operand:QI 2 "register_operand" " r")))]
+  "TARGET_ZABHA"
+  "amominu.b\t%0,%1,%2"
+  [(set_attr "type" "atomic")
+   (set_attr "mode" "QI")])
+
+(define_insn "amo_minhi3"
+  [(set (match_operand:HI            0 "register_operand" "=r")
+	(smin:HI (match_operand:HI 1 "register_operand" " r")
+		   (match_operand:HI 2 "register_operand" " r")))]
+  "TARGET_ZABHA"
+  "amomin.h\t%0,%1,%2"
+  [(set_attr "type" "atomic")
+   (set_attr "mode" "HI")])
+
+(define_insn "amo_minuhi3"
+  [(set (match_operand:HI            0 "register_operand" "=r")
+	(umin:HI (match_operand:HI 1 "register_operand" " r")
+		   (match_operand:HI 2 "register_operand" " r")))]
+  "TARGET_ZABHA"
+  "amominu.h\t%0,%1,%2"
+  [(set_attr "type" "atomic")
+   (set_attr "mode" "HI")])
+
+(define_insn "amo_maxqi3"
+  [(set (match_operand:QI            0 "register_operand" "=r")
+	(smax:QI (match_operand:QI 1 "register_operand" " r")
+		   (match_operand:QI 2 "register_operand" " r")))]
+  "TARGET_ZABHA"
+  "amomax.b\t%0,%1,%2"
+  [(set_attr "type" "atomic")
+   (set_attr "mode" "QI")])
+
+(define_insn "amo_maxuqi3"
+  [(set (match_operand:QI            0 "register_operand" "=r")
+	(umax:QI (match_operand:QI 1 "register_operand" " r")
+		   (match_operand:QI 2 "register_operand" " r")))]
+  "TARGET_ZABHA"
+  "amomaxu.b\t%0,%1,%2"
+  [(set_attr "type" "atomic")
+   (set_attr "mode" "QI")])
+
+(define_insn "amo_maxhi3"
+  [(set (match_operand:HI            0 "register_operand" "=r")
+	(smax:HI (match_operand:HI 1 "register_operand" " r")
+		   (match_operand:HI 2 "register_operand" " r")))]
+  "TARGET_ZABHA"
+  "amomax.h\t%0,%1,%2"
+  [(set_attr "type" "atomic")
+   (set_attr "mode" "HI")])
+
+(define_insn "amo_maxuhi3"
+  [(set (match_operand:HI            0 "register_operand" "=r")
+	(umax:HI (match_operand:HI 1 "register_operand" " r")
+		   (match_operand:HI 2 "register_operand" " r")))]
+  "TARGET_ZABHA"
+  "amomaxu.h\t%0,%1,%2"
+  [(set_attr "type" "atomic")
+   (set_attr "mode" "HI")])
+
 ;;
 ;;  ....................
 ;;
@@ -1690,6 +1780,24 @@
   [(set_attr "type" "logical")
    (set_attr "mode" "<MODE>")])
 
+(define_insn "amo_andqi3"
+  [(set (match_operand:QI                0 "register_operand" "=r,r")
+	(and:QI (match_operand:QI 1 "register_operand" "r,r")
+		       (match_operand:QI 2 "arith_operand"    " r,r")))]
+  "TARGET_ZABHA"
+  "amoand.b\t%0,%1,%2"
+  [(set_attr "type" "atomic")
+   (set_attr "mode" "QI")])
+
+(define_insn "amo_andhi3"
+  [(set (match_operand:HI                0 "register_operand" "=r,r")
+	(and:HI (match_operand:HI 1 "register_operand" "r,r")
+		       (match_operand:HI 2 "arith_operand"    " r,r")))]
+  "TARGET_ZABHA"
+  "amoand.h\t%0,%1,%2"
+  [(set_attr "type" "atomic")
+   (set_attr "mode" "HI")])
+
 (define_insn "<optab><mode>3"
   [(set (match_operand:X                0 "register_operand" "=r,r")
 	(any_or:X (match_operand:X 1 "register_operand" "%r,r")
@@ -1723,6 +1831,42 @@
   "not\t%0,%1"
   [(set_attr "type" "logical")
    (set_attr "mode" "SI")])
+
+(define_insn "amo_orqi3"
+  [(set (match_operand:QI 0 "register_operand"           "=r,r")
+	(ior:QI (match_operand:QI 1 "register_operand" " r,r")
+		(match_operand:QI 2 "arith_operand"    " r,r")))]
+  "TARGET_ZABHA"
+  "amoor.b\t%0,%1,%2"
+  [(set_attr "type" "atomic")
+   (set_attr "mode" "QI")])
+
+(define_insn "amo_orhi3"
+  [(set (match_operand:HI 0 "register_operand"           "=r,r")
+	(ior:HI (match_operand:HI 1 "register_operand" " r,r")
+		(match_operand:HI 2 "arith_operand"    " r,r")))]
+  "TARGET_ZABHA"
+  "amoor.h\t%0,%1,%2"
+  [(set_attr "type" "atomic")
+   (set_attr "mode" "HI")])
+
+(define_insn "amo_xorqi3"
+  [(set (match_operand:QI 0 "register_operand"           "=r,r")
+	(xor:QI (match_operand:QI 1 "register_operand" " r,r")
+		(match_operand:QI 2 "arith_operand"    " r,r")))]
+  "TARGET_ZABHA"
+  "amoxor.b\t%0,%1,%2"
+  [(set_attr "type" "atomic")
+   (set_attr "mode" "QI")])
+
+(define_insn "amo_xorhi3"
+  [(set (match_operand:HI 0 "register_operand"           "=r,r")
+	(xor:HI (match_operand:HI 1 "register_operand" " r,r")
+		(match_operand:HI 2 "arith_operand"    " r,r")))]
+  "TARGET_ZABHA"
+  "amoxor.h\t%0,%1,%2"
+  [(set_attr "type" "atomic")
+   (set_attr "mode" "HI")])
 
 ;;
 ;;  ....................
